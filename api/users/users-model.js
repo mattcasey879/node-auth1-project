@@ -24,6 +24,7 @@ async function findById(user_id) {
     .select("user_id", "username")
     .from("users")
     .where("user_id", user_id)
+    .first();
   return data
 }
 

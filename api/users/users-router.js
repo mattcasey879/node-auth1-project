@@ -27,7 +27,6 @@ const User = require("./users-model")
   }
  */
 router.get("/", restricted, (req, res, next ) => {
-  console.log(req.session)
   User.find()
     .then(data => res.json(data))
     .catch(next)

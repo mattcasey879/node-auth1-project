@@ -59,13 +59,11 @@ router.post("/register", checkUsernameFree, async (req, res, next) => {
 router.post("/login", checkUsernameExists, async (req, res, next) => {
   const { username, password } = req.body;
   const [user] = await User.findBy({ username });
-  console.log(user);
   try {
     if (user && brcypt.compareSync(password, user.password)) {
-      console.log(req.session);
       req.session.user = user;
 
-      res.json({ message: `welcome back, ${username}` });
+      res.json({ message: `welcome ${username}` });
     } else {
       next({ status: 401, message: "Invalid credentials" });
     }
